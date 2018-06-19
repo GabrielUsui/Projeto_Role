@@ -41,9 +41,29 @@ public class LocalidadeDao {
 		}
 	}
 	
-	public void alterar(Localidade localidade)
+	public void alterarCardapio(Localidade localidade)
 	{
-		String sql = "UPDATE localidade set  = '"+localidade.get()+"' where nome='"+ localidade.getNome()+"'";
+		String sql = "UPDATE localidade set cardapio = '"+localidade.getCardapio()+"' where nome='"+ localidade.getNome()+"'";
+		
+		try {
+			
+			connection = controleconexao.abrirConexao();
+			preparador = connection.prepareStatement(sql);
+			preparador.execute();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}finally{
+			ControleConexao.fecharInstrucao(preparador);
+			ControleConexao.fecharConexao(connection);
+		}
+	}
+	
+	public void alterarTelefone(Localidade localidade)
+	{
+		String sql = "UPDATE localidade set telefone = '"+localidade.getTelefone()+"' where nome='"+ localidade.getNome()+"'";
 		
 		try {
 			
