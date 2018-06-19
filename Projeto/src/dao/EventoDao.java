@@ -41,6 +41,25 @@ public class EventoDao
 			ControleConexao.fecharConexao(connection);
 		}
 	}
+	
+	public void alterarNome(Evento evento)
+	{
+			String sql = "UPDATE evento set nome = '"+evento.getNome()+"' where nome='"+ evento.getNome()+"'";
+			try {
+			
+			connection = controleconexao.abrirConexao();
+			preparador = connection.prepareStatement(sql);
+			preparador.execute();
+				
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}finally{
+			ControleConexao.fecharInstrucao(preparador);
+			ControleConexao.fecharConexao(connection);
+		}
+	}
 		
 	public void alterarPreco(Evento evento)
 	{
